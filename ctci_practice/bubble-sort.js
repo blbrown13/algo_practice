@@ -1,27 +1,50 @@
 
-// basic bubbleSort implementation
-function bubbleSort(array) {
-  for(var i = 0; i < array.length; i++) {
-    var swapped = false;
+// *** basic bubbleSort implementation ***
+// function bubbleSort(array) {
+//   for(var i = 0; i < array.length; i++) {
+//     var swapped = false;
+//
+//     for(var j = 1; j < array.length; j++) {
+//       if(array[j - 1] > array[j]) {
+//         swap(array, j - 1, j);
+//         swapped = true;
+//       }
+//     }
+//
+//     if (swapped === false) {
+//       break;
+//     }
+//   }
+//
+//   return array;
+// }
 
-    for(var j = 1; j < array.length; j++) {
-      if(array[j - 1] > array[j]) {
-        swap(array, j - 1, j);
-        swapped = true;
+
+// *** slightly more efficient method of implementing bubbleSort ***
+const bubbleSort = (array) => {
+  let isSorted = false;
+  let unsortedArray = array.length - 1;
+
+  while (!isSorted) {
+    isSorted = true;
+
+    for (let i = 0; i < unsortedArray; i++) {
+      if (array[i] > array[i+1]) {
+        swap(array, i, i+1);
+        isSorted = false;
       }
     }
 
-    if (swapped === false) {
-      break;
-    }
+    unsortedArray--;
   }
 
   return array;
 }
 
-// helper function called from within bubbleSort
-function swap(array, i, j) {
-  var temp = array[i];
+
+// *** helper function called from within bubbleSort ***
+const swap = (array, i, j) => {
+  let temp = array[i];
   array[i] = array[j];
   array[j] = temp;
 }
